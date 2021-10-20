@@ -1,7 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-import numpy as np
 from rich import print
 
 st.set_page_config(layout="wide")
@@ -163,9 +162,7 @@ invest_strat_dict = {
 
 }
 
-
 invest_strat_choices_dict = {}
-
 
 for k, v in invest_strat_dict.items():
 
@@ -219,13 +216,11 @@ with col5:
 
 # the interest rate is applied at the end of the period
 
-
 period_n_dict = {
     'weekly': 52,
     'monthly': 12,
     'yearly': 1
 }
-
 
 # get interest rate to be used
 
@@ -245,7 +240,6 @@ chart_data_dict = x[0]
 total_funds_invested = x[1]
 final_principal = x[2]
 compressed_return_data_dict = x[3]
-
 
 your_investment_return_string = f"Your Investment {(interest_rate * 100):.2f}%"
 
@@ -268,8 +262,6 @@ chart_data_CASH_df = pd.DataFrame.from_dict(
 
 all_chart_data = pd.concat([chart_data_CASH_df, chart_data_df], axis=1)
 
-# chart_data = pd.DataFrame.from_dict(
-#     all_chart_data, orient='index', columns=['Your Investment'])
 
 return_over_funds_invested = final_principal - total_funds_invested
 return_over_cash = final_principal - final_principal_CASH
@@ -285,7 +277,6 @@ st.subheader("Your investment returns")
 string_1 = f"your total funds invested: ${total_funds_invested:,}"
 string_2 = f"your total funds returned: ${final_principal:,.2f}"
 string_3 = f"your returns over funds invested: ${return_over_funds_invested:,.2f}"
-# st.write(f"Total funds invested: ${total_funds_invested:,}")
 st.write(f"Your returns: {string_1} || {string_2} || {string_3}")
 
 string_4 = f"total cash returns: ${final_principal_CASH:,.2f}"
@@ -293,6 +284,5 @@ string_5 = f"total cash returns over your funds invested: ${(final_principal_CAS
 string_6 = f"your returns over total cash returns: ${(return_over_cash):,.2f}"
 st.write(
     f"Your returns compared to cash: {string_4} || {string_5} || {string_6}")
-
 
 st.line_chart(all_chart_data)
