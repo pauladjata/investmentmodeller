@@ -1,7 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-from rich import print
 
 st.set_page_config(layout="wide")
 
@@ -266,12 +265,12 @@ all_chart_data = pd.concat([chart_data_CASH_df, chart_data_df], axis=1)
 return_over_funds_invested = final_principal - total_funds_invested
 return_over_cash = final_principal - final_principal_CASH
 
-print(all_chart_data)
-print(f"total_funds_invested: {total_funds_invested:,}")
-print(f"final_principal: {final_principal:,.2f}")
-print(f"return_over_funds_invested: {return_over_funds_invested:,.2f}")
-print(f"return_over_cash: {return_over_cash:,.2f}")
-print(compressed_return_data_dict)
+# print(all_chart_data)
+# print(f"total_funds_invested: {total_funds_invested:,}")
+# print(f"final_principal: {final_principal:,.2f}")
+# print(f"return_over_funds_invested: {return_over_funds_invested:,.2f}")
+# print(f"return_over_cash: {return_over_cash:,.2f}")
+# print(compressed_return_data_dict)
 
 st.subheader("Your investment returns")
 string_1 = f"your total funds invested: ${total_funds_invested:,}"
