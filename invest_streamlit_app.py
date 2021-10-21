@@ -155,7 +155,7 @@ invest_strat_dict = {
         'return': 0.06,
     },
     2: {
-        'type': 'Aggressive',
+        'type': 'Growth',
         'return': 0.09
     },
 
