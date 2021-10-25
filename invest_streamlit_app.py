@@ -246,8 +246,10 @@ all_chart_data = pd.concat(
 return_over_funds_invested = final_principal - total_funds_invested
 return_over_cash = final_principal - final_principal_CASH
 
+output_string = f"Your investment returns: turn ${total_funds_invested:,} into ${final_principal:,.2f} after {investment_horizon} years"
 
-st.subheader("Your investment returns")
+
+st.subheader(output_string)
 string_1 = f"your total funds invested: ${total_funds_invested:,}"
 string_2 = f"your total funds returned: ${final_principal:,.2f}"
 string_3 = f"your returns over funds invested: ${return_over_funds_invested:,.2f}"
