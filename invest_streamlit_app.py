@@ -7,6 +7,11 @@ st.set_page_config(layout="wide")
 # constants
 
 CASH_RETURN = 0.005
+initial_investment_amount = 1000
+investment_period = 'monthly'
+periodic_investment_amount = 100
+sub_heading_string_1 = f"Let's say you start with an initial investment amount of ${initial_investment_amount:,} and make regular contributions of ${periodic_investment_amount} every month."
+sub_heading_string_2 = f"The chart below provides a theoretical indication of how an investment could perform depending on the investment strategy and horizon selected."
 
 
 def invest_strat_chosen_widget(dict):
@@ -151,6 +156,8 @@ def create_chart_data_init(n, initial_investment_amount, periodic_investment_amo
 
 
 st.header('Investment Modelling')
+st.write(sub_heading_string_1)
+st.write(sub_heading_string_2)
 
 invest_strat_dict = {
     0: {
@@ -182,7 +189,7 @@ for k, v in invest_strat_dict.items():
 # create columns
 
 col1, col2, col3 = st.columns(3)
-col4, col5, col6 = st.columns(3)
+# col4, col5, col6 = st.columns(3)
 
 period_convert_dict = {
     'weekly': 'week',
@@ -200,19 +207,20 @@ with col2:
     st.subheader("Investment horizon")
     investment_horizon = investment_horizon_widget()
 
-with col3:
-    st.subheader("Initial investment amount")
-    initial_investment_amount = initial_investment_amount_widget()
-
-with col4:
-    st.subheader("Regular contribution period")
-    investment_period = investment_period_widget()
+# with col3:
+    # st.subheader("Initial investment amount")
+    # initial_investment_amount = initial_investment_amount_widget()
 
 
-with col5:
-    st.subheader("Regular contribution amount for each period")
-    periodic_investment_amount = investment_amount_widget(
-        period_convert_dict[investment_period])
+# with col4:
+#     st.subheader("Regular contribution period")
+#     investment_period = investment_period_widget()
+
+
+# with col5:
+#     st.subheader("Regular contribution amount for each period")
+#     periodic_investment_amount = investment_amount_widget(
+#         period_convert_dict[investment_period])
 
 
 # create data for chart
