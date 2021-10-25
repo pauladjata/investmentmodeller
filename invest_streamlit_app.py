@@ -11,7 +11,7 @@ initial_investment_amount = 1000
 investment_period = 'monthly'
 periodic_investment_amount = 100
 sub_heading_string_1 = f"If, say, you start with an initial investment amount of ${initial_investment_amount:,} and make regular contributions of ${periodic_investment_amount} every month, "
-sub_heading_string_2 = f"The chart below provides a theoretical indication of how an investment could perform depending on the investment strategy and horizon selected."
+sub_heading_string_2 = f"the chart below provides a theoretical indication of how an investment could perform depending on the investment strategy and horizon selected."
 
 sub_heading_string = sub_heading_string_1 + sub_heading_string_2
 
@@ -129,7 +129,10 @@ def create_chart_data_init(n, initial_investment_amount, periodic_investment_amo
 
 
 st.header('The magic of compounding')
-st.write(sub_heading_string)
+
+col10, col20 = st.columns(2)
+with col10:
+    st.write(sub_heading_string)
 
 invest_strat_dict = {
     0: {
