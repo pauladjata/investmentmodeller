@@ -130,9 +130,7 @@ def create_chart_data_init(n, initial_investment_amount, periodic_investment_amo
 
 st.header('The magic of compounding')
 
-col10, col20 = st.columns(2)
-with col10:
-    st.write(sub_heading_string)
+st.write(sub_heading_string)
 
 invest_strat_dict = {
     0: {
