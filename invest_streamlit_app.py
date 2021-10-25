@@ -10,8 +10,10 @@ CASH_RETURN = 0.005
 initial_investment_amount = 1000
 investment_period = 'monthly'
 periodic_investment_amount = 100
-sub_heading_string_1 = f"Let's say you start with an initial investment amount of ${initial_investment_amount:,} and make regular contributions of ${periodic_investment_amount} every month."
+sub_heading_string_1 = f"If, say, you start with an initial investment amount of ${initial_investment_amount:,} and make regular contributions of ${periodic_investment_amount} every month, "
 sub_heading_string_2 = f"The chart below provides a theoretical indication of how an investment could perform depending on the investment strategy and horizon selected."
+
+sub_heading_string = sub_heading_string_1 + sub_heading_string_2
 
 
 def invest_strat_chosen_widget(dict):
@@ -22,36 +24,10 @@ def invest_strat_chosen_widget(dict):
     return selection
 
 
-def initial_investment_amount_widget():
-
-    selection = st.slider('Select your initial investment amount ($)',
-                          min_value=0, max_value=100000, value=5000, step=1000, format="$%d")
-
-    return selection
-
-
 def investment_horizon_widget():
 
     selection = st.slider(
         'Select your investment horizon (years)', min_value=1, max_value=25, value=10, format="%d years")
-
-    return selection
-
-
-def investment_period_widget():
-
-    selection = st.radio('Select the period you make regular contributions', [
-        'weekly', 'monthly', 'yearly'])
-
-    return selection
-
-
-def investment_amount_widget(contribution_period):
-
-    string_ = f"Select your regular contribution amount for each {contribution_period} ($)"
-
-    selection = st.slider(
-        string_, min_value=0, max_value=2000, value=100, step=10, format="$%d per " + contribution_period)
 
     return selection
 
@@ -130,9 +106,6 @@ def create_chart_data_init(n, initial_investment_amount, periodic_investment_amo
 
             chart_data_dict[i] = chart_data_init_dict[i-1]['ending_principal']
 
-    # compressed_investment_dict - investment amount
-    # compressed_funds_employed_dict - funds employed
-
     for i in range(0, n + 1):
 
         compressed_investment_dict.setdefault(counter_, [])
@@ -155,9 +128,8 @@ def create_chart_data_init(n, initial_investment_amount, periodic_investment_amo
     return chart_data_dict, total_funds_invested, final_ending_principal, compressed_investment_dict, compressed_funds_employed_dict
 
 
-st.header('Investment Modelling')
-st.write(sub_heading_string_1)
-st.write(sub_heading_string_2)
+st.header('The magic of compounding')
+st.write(sub_heading_string)
 
 invest_strat_dict = {
     0: {
@@ -189,7 +161,7 @@ for k, v in invest_strat_dict.items():
 # create columns
 
 col1, col2, col3 = st.columns(3)
-# col4, col5, col6 = st.columns(3)
+
 
 period_convert_dict = {
     'weekly': 'week',
@@ -206,21 +178,6 @@ with col1:
 with col2:
     st.subheader("Investment horizon")
     investment_horizon = investment_horizon_widget()
-
-# with col3:
-    # st.subheader("Initial investment amount")
-    # initial_investment_amount = initial_investment_amount_widget()
-
-
-# with col4:
-#     st.subheader("Regular contribution period")
-#     investment_period = investment_period_widget()
-
-
-# with col5:
-#     st.subheader("Regular contribution amount for each period")
-#     periodic_investment_amount = investment_amount_widget(
-#         period_convert_dict[investment_period])
 
 
 # create data for chart
@@ -288,13 +245,6 @@ all_chart_data = pd.concat(
 return_over_funds_invested = final_principal - total_funds_invested
 return_over_cash = final_principal - final_principal_CASH
 
-# print(all_chart_data)
-# print(f"total_funds_invested: {total_funds_invested:,}")
-# print(f"final_principal: {final_principal:,.2f}")
-# print(f"return_over_funds_invested: {return_over_funds_invested:,.2f}")
-# print(f"return_over_cash: {return_over_cash:,.2f}")
-# print(compressed_return_data_dict)
-# print(funds_employed_df)
 
 st.subheader("Your investment returns")
 string_1 = f"your total funds invested: ${total_funds_invested:,}"
